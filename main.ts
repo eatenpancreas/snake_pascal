@@ -1,15 +1,8 @@
 function NewCandy () {
-    CandyPlaats = [
-    0,
-    1,
-    2,
-    3,
-    4
-    ]
     f = true
     while (f) {
-        Candy_X = CandyPlaats._pickRandom()
-        Candy_Y = CandyPlaats._pickRandom()
+        Candy_X = randint(0, 4)
+        Candy_Y = randint(0, 4)
         if (Candy_X != SnakeHead_X && Candy_Y != SnakeHead_Y) {
             break;
         }
@@ -56,7 +49,7 @@ function Dir () {
     }
     for (let index = 0; index <= SnakeBodies_X.length - 2; index++) {
         if (SnakeHead_X == SnakeBodies_X[index] && SnakeHead_Y == SnakeBodies_Y[index]) {
-            myImage = convertToText(0)
+            basic.pause(100)
             music.startMelody(music.builtInMelody(Melodies.Wawawawaa), MelodyOptions.Once)
             game.gameOver()
         }
@@ -69,11 +62,9 @@ function Dir () {
         NewCandy()
     }
 }
-let myImage = ""
 let Candy_Y = 0
 let Candy_X = 0
 let f = false
-let CandyPlaats: number[] = []
 let SnakeBodies_Y: number[] = []
 let SnakeBodies_X: number[] = []
 let SnakeHead_Y = 0
