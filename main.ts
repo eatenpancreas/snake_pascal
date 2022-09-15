@@ -28,6 +28,7 @@ input.onButtonPressed(Button.B, function () {
     }
 })
 function Dir () {
+    music.playTone(139, music.beat(BeatFraction.Whole))
     if (Directie == 0) {
         SnakeHead_X += -1
     } else {
@@ -55,16 +56,20 @@ function Dir () {
     }
     for (let index = 0; index <= SnakeBodies_X.length - 2; index++) {
         if (SnakeHead_X == SnakeBodies_X[index] && SnakeHead_Y == SnakeBodies_Y[index]) {
+            myImage = convertToText(0)
+            music.startMelody(music.builtInMelody(Melodies.Wawawawaa), MelodyOptions.Once)
             game.gameOver()
         }
     }
     if (SnakeHead_X == Candy_X && SnakeHead_Y == Candy_Y) {
         SnakeBodies_X.unshift(SnakeHead_X)
         SnakeBodies_Y.unshift(SnakeHead_Y)
+        music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
         game.addScore(1)
         NewCandy()
     }
 }
+let myImage = ""
 let Candy_Y = 0
 let Candy_X = 0
 let f = false
@@ -82,7 +87,7 @@ SnakeHead_Y = 3
 SnakeBodies_X = []
 SnakeBodies_Y = []
 NewCandy()
-loops.everyInterval(1200, function () {
+loops.everyInterval(1000, function () {
     SnakeBodies_X.unshift(SnakeHead_X)
     SnakeBodies_Y.unshift(SnakeHead_Y)
     Dir()
@@ -93,7 +98,7 @@ basic.forever(function () {
     basic.clearScreen()
     led.plotBrightness(Candy_X, Candy_Y, 100)
     led.plot(SnakeHead_X, SnakeHead_Y)
-    for (let index = 0; index <= SnakeBodies_X.length - 1; index++) {
-        led.plotBrightness(SnakeBodies_X[index], SnakeBodies_Y[index], 255)
+    for (let index2 = 0; index2 <= SnakeBodies_X.length - 1; index2++) {
+        led.plotBrightness(SnakeBodies_X[index2], SnakeBodies_Y[index2], 255)
     }
 })
