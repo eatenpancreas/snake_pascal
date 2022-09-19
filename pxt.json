@@ -1,5 +1,6 @@
 {
     "name": "SNAKE_PASCAL",
+    "version": "1.0.0",
     "description": "",
     "dependencies": {
         "core": "*",
